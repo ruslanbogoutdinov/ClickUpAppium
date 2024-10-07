@@ -24,7 +24,7 @@ public class LoginTest {
     private LoginPage loginPage;
 
     @Test
-    public void testLogin() {
+    public void testLogin1() {
         loginPage.login("testUser", "testPassword");
     }
 
