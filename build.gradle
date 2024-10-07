@@ -1,0 +1,77 @@
+plugins {
+    id 'org.springframework.boot' version '3.1.4'
+    id 'io.spring.dependency-management' version '1.1.3'
+    id 'java'
+}
+
+group = 'uz.click'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+def
+    appiumClientVersion = "8.6.0",
+    seleniumJavaVersion = "4.8.0",
+    allureVersion = "2.25.0"
+
+dependencyManagement {
+    imports {
+        mavenBom "io.qameta.allure:allure-bom:$allureVersion"
+    }
+}
+
+dependencies {
+    // Spring Boot Starter
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring Boot Starter Test
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.seleniumhq.selenium', module: 'selenium-java'
+    }
+
+    // Netty
+    implementation 'io.netty:netty-codec-http:4.1.114.Final'
+
+    // Guava
+    implementation 'com.google.guava:guava:33.2.1-jre'
+
+    // Appium Java Client
+    implementation "io.appium:java-client:$appiumClientVersion"
+
+    // Selenium Java
+    implementation "org.seleniumhq.selenium:selenium-java:$seleniumJavaVersion"
+
+    // Allure JUnit5
+    testImplementation 'io.qameta.allure:allure-junit5'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+bootJar {
+    enabled = true
+}
