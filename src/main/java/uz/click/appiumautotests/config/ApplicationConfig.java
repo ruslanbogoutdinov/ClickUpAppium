@@ -1,49 +1,35 @@
 package uz.click.appiumautotests.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.aeonbits.owner.Config;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ApplicationConfig {
-    //@Value("${appium.url}")
-//    @Value("http://127.0.0.1:4723/wd/hub")
-//    private String appiumUrl;
+public interface ApplicationConfig extends Config {
+    @Key("appium_url")
+    @DefaultValue("http://127.0.0.1:4723/wd/hub")
+    String getAppiumUrl();
 
-    //@Value("${appium.platformName}")
-//    @Value("${appium.platformName}")
-//    private String platformName;
+    @Key("platform_name")
+    @DefaultValue("Android")
+    String getPlatformName();
 
-//    @Value("${appium.deviceName}")
-//    private String deviceName;
+    @Key("device_name")
+    @DefaultValue("Android Test Device")
+    String getDeviceName();
 
-//    @Value("${appium.app}")
-//    private String appPath;
+    @Key("os_version")
+    @DefaultValue("10")
+    String getOSVersion();
 
-//    @Value("${appium.os_version}")
-//    private String osVersion;
+    @Key("app_path")
+    @DefaultValue("/Users/ruslan/IdeaProjects/Click/clickup-appium-autotests/app-staging-debug.apk")
+    String getAppPath();
 
-    // Getters
-    public String getAppiumUrl() {
-        // return appiumUrl;
-        return "http://127.0.0.1:4723/wd/hub";
-    }
+    @Key("app_package")
+    @DefaultValue("dev.air.com.ssdsoftwaresolutions.clickuz")
+    String getAppPackage();
 
-    public String getPlatformName() {
-        //return platformName;
-        return "Android";
-    }
-
-    public String getDeviceName() {
-       // return deviceName;
-        return "Vivo Y22";
-    }
-
-    public String getOSVersion() {
-        //return osVersion;
-        return "12";
-    }
-
-    public String getAppPath() {
-        return "appPath";
-    }
+    @Key("app_activity")
+    @DefaultValue("uz.click.evo.ui.mainrouter.MainRouterActivity")
+    String getAppActivity();
 }
