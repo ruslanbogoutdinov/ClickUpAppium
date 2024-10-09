@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // аннотация @SpringBootApplication является основным строительным блоком в приложениях Spring Boot,
 // который объединяет конфигурацию, автоматическую настройку и поиск компонентов.
 @SpringBootApplication
-public class ClickupAppiumAutotestsApplication {
+public class ClickUpAppiumAutotestsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ClickupAppiumAutotestsApplication.class, args);
+		SpringApplication.run(ClickUpAppiumAutotestsApplication.class, args);
 	}
 }

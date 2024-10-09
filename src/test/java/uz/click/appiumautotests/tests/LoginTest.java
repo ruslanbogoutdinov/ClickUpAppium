@@ -1,6 +1,6 @@
 package uz.click.appiumautotests.tests;
 
-import uz.click.appiumautotests.ClickupAppiumAutotestsApplication;
+import uz.click.appiumautotests.ClickUpAppiumAutotestsApplication;
 import uz.click.appiumautotests.drivers.AndroidDriverManager;
 import uz.click.appiumautotests.pages.LoginPage;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,9 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 // аннотация @SpringBootTest используется в тестах на базе Spring Boot для указания конфигурации приложения,
 // которое будет загружаться в тестах. Она позволяет тестам автоматически поднимать контекст Spring,
 // что делает возможным тестирование компонентов приложения в среде, максимально приближенной к реальной.
-@SpringBootTest(classes = ClickupAppiumAutotestsApplication.class)
+@SpringBootTest(classes = ClickUpAppiumAutotestsApplication.class)
 public class LoginTest {
-
     @Autowired
     private AndroidDriverManager androidDriverManager;
 
@@ -27,5 +26,4 @@ public class LoginTest {
     public void testLogin() {
         loginPage.login("testUser", "testPassword");
     }
-
 }
