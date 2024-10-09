@@ -28,25 +28,24 @@ public class AppiumConfig {
     @Bean
     public AndroidDriver androidDriver() throws Exception {
         UiAutomator2Options options = new UiAutomator2Options()
-        
-    }
-    @BeforeEach
-    void addListener() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+            .setAutomationName(ANDROID_UIAUTOMATOR2)
+            .setPlatformName(applicationConfig.getPlatformName())
+            .setDeviceName(applicationConfig.getDeviceName())
+            .setPlatformVersion(applicationConfig.getOSVersion())
+            .setApp(applicationConfig.getAppPath())
+            .setAppPackage(applicationConfig.getAppPackage())
+            .setAppActivity(applicationConfig.getAppActivity());
 
-                .setAutomationName(ANDROID_UIAUTOMATOR2)
-                .setPlatformName(applicationConfig.getPlatformName())
-                .setDeviceName(applicationConfig.getDeviceName())
-                .setPlatformVersion(applicationConfig.getOSVersion())
-                .setApp(applicationConfig.getAppPath())
-                .setAppPackage(applicationConfig.getAppPackage())
-                .setAppActivity(applicationConfig.getAppActivity());
-      
         AndroidDriver driver = new AndroidDriver(new URL(appConfig.getAppiumUrl()), options);
         WebDriverRunner.setWebDriver(driver);
+        
         return driver;
 
         // return new AndroidDriver(new URL(applicationConfig.getAppiumUrl()), options);
-
+    }
+    
+    @BeforeEach
+    void addListener() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 }
