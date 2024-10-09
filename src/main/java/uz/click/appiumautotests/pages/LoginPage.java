@@ -1,14 +1,14 @@
 package uz.click.appiumautotests.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import lombok.Data;
+import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import lombok.Data;
 
-import jakarta.annotation.PostConstruct;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 @Data
 @Component
@@ -17,24 +17,27 @@ public class LoginPage {
     @Autowired
     private AndroidDriver driver;
 
-    @FindBy(id = "com.example:id/username")
-    private WebElement usernameInput;
 
-    @FindBy(id = "com.example:id/password")
-    private WebElement passwordInput;
+    private final SelenideElement
+            englishBtn = $(By.id("dev.air.com.ssdsoftwaresolutions.clickuz:id/btnEnglish")),
+            numberField = $(By.id("dev.air.com.ssdsoftwaresolutions.clickuz:id/etMobileNumber")),
+            nextBtn = $(By.id("dev.air.com.ssdsoftwaresolutions.clickuz:id/btnNext")),
+            codeField = $(By.id("dev.air.com.ssdsoftwaresolutions.clickuz:id/etCode"));
 
-    @FindBy(id = "com.example:id/login")
-    private WebElement loginButton;
-
-    // инициализация переменных после того, как Spring завершит создание бина и инъекцию его зависимостей.
-    @PostConstruct
-    public void init() {
-        PageFactory.initElements(driver, this);
+    public void chooseLanguage() {
+        englishBtn.click();
     }
-
-    public void login(String username, String password) {
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
-        loginButton.click();
+    public void setPhoneNumber() {
+        numberField.sendKeys("977192070");
+    }
+    public void setSmsCode() {
+        codeField.sendKeys("123456");
+    }
+    public void setPinCode(String numbers) {
+        for (int i = 0; i < numbers.length(); i++) {
+            char digit = numbers.charAt(i);
+            String xpath = String.format("//*[@text='%s']", digit);
+            $x(xpath).click();
+        }
     }
 }

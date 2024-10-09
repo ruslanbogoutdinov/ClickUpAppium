@@ -35,17 +35,20 @@ allure {
 }
 
 dependencies {
-    implementation "org.springframework.boot:spring-boot-starter"
-    implementation "io.netty:netty-codec-http:$nettyVersion"
-    implementation "com.google.guava:guava:$guavaVersion"
+
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+
+
+
     implementation "io.appium:java-client:$appiumClientVersion"
     implementation "org.seleniumhq.selenium:selenium-java:$seleniumJavaVersion"
     implementation "org.aeonbits.owner:owner:$ownerVersion"
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test") {
-        exclude group: "org.seleniumhq.selenium", module: "selenium-java"
-    }
-    testImplementation "io.qameta.allure:allure-junit5:$allureVersion"
+
+    implementation "io.qameta.allure:allure-selenide:2.21.0"
+
+    implementation "com.codeborne:selenide:7.2.2"
+
 }
 
 tasks.withType(JavaCompile) {
