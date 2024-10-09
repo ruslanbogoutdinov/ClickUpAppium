@@ -13,10 +13,8 @@ import static com.codeborne.selenide.Selenide.$x;
 @Data
 @Component
 public class LoginPage {
-
     @Autowired
     private AndroidDriver driver;
-
 
     private final SelenideElement
             englishBtn = $(By.id("dev.air.com.ssdsoftwaresolutions.clickuz:id/btnEnglish")),
@@ -27,12 +25,15 @@ public class LoginPage {
     public void chooseLanguage() {
         englishBtn.click();
     }
+
     public void setPhoneNumber() {
         numberField.sendKeys("977192070");
     }
+
     public void setSmsCode() {
         codeField.sendKeys("123456");
     }
+
     public void setPinCode(String numbers) {
         for (int i = 0; i < numbers.length(); i++) {
             char digit = numbers.charAt(i);

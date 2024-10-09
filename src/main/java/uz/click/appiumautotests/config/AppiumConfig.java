@@ -36,12 +36,10 @@ public class AppiumConfig {
             .setAppPackage(applicationConfig.getAppPackage())
             .setAppActivity(applicationConfig.getAppActivity());
 
-        AndroidDriver driver = new AndroidDriver(new URL(appConfig.getAppiumUrl()), options);
+        AndroidDriver driver = new AndroidDriver(new URL(applicationConfig.getAppiumUrl()), options);
         WebDriverRunner.setWebDriver(driver);
         
         return driver;
-
-        // return new AndroidDriver(new URL(applicationConfig.getAppiumUrl()), options);
     }
     
     @BeforeEach
