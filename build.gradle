@@ -26,6 +26,7 @@ dependencyManagement {
 dependencies {
     // Spring Boot Starter
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
@@ -50,6 +51,9 @@ dependencies {
 
     // Allure JUnit5
     testImplementation 'io.qameta.allure:allure-junit5'
+    implementation "io.qameta.allure:allure-selenide:2.21.0"
+
+    implementation "com.codeborne:selenide:7.2.2"
 }
 
 tasks.withType(JavaCompile) {
